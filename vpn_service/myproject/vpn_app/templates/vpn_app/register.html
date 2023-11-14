@@ -7,9 +7,9 @@
     <h2>Регистрация</h2>
     <form method="post">
         {% csrf_token %}
-        {{ user_form.as_p }}
-        {{ profile_form.as_p }}
+        {{ form.as_p }}
         <button type="submit">Зарегистрироваться</button>
     </form>
 </body>
 </html>
+

@@ -1,0 +1,19 @@
+<!-- main.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+</head>
+<body>
+    <!-- Ваш основной контент страницы main здесь -->
+
+    {% if user.is_authenticated %}
+        <!-- Если пользователь аутентифицирован, показываем кнопку выхода и ссылку на страницу входа -->
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+    {% endif %}
+</body>
+</html>
