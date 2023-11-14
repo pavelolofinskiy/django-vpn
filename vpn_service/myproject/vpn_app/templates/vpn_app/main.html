@@ -1,19 +1,23 @@
-<!-- main.html -->
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Main Page</title>
 </head>
 <body>
-    <!-- Ваш основной контент страницы main здесь -->
-
     {% if user.is_authenticated %}
-        <!-- Если пользователь аутентифицирован, показываем кнопку выхода и ссылку на страницу входа -->
-        <form action="{% url 'logout' %}" method="post">
+        <h1>Welcome, {{ user.username }}!</h1>
+        <p>First Name: {{ user_first_name }}</p>
+        <p>Last Name: {{ user_last_name }}</p>
+        <!-- Other content -->
+
+        <!-- Logout button -->
+        <form action="{{ logout_url }}" method="post">
             {% csrf_token %}
             <button type="submit">Logout</button>
         </form>
+
+        <!-- Link to edit profile -->
+        <a href="{% url 'edit' %}">Edit Profile</a>
     {% endif %}
 </body>
 </html>

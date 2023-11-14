@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
-from django.views.generic.edit import FormView
+from django.views.generic.edit import FormView, UpdateView
 from django.urls import reverse_lazy
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.list import ListView
+from .forms import UserChangeForm
 
 from .models import UserProfile
 
@@ -14,20 +15,22 @@ from .models import UserProfile
 class MainPage(LoginRequiredMixin, ListView):
     context_object_name = 'main'
     template_name = 'vpn_app/main.html'
-    model = UserProfile  # Предполагается, что UserProfile - это ваша модель
+    model = UserProfile
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['logout_url'] = reverse_lazy('logout')  # URL для выхода пользователя
+        if self.request.user.is_authenticated:
+            user_profile = UserProfile.objects.get(user=self.request.user)
+            context['user_first_name'] = user_profile.first_name
+            context['user_last_name'] = user_profile.last_name
+            context['logout_url'] = reverse_lazy('logout')
         return context
-    context_object_name = 'main'
-    template_name = 'vpn_app/main.html'
 
 
 
 class RegisterPage(FormView):
     template_name = 'vpn_app/register.html'
-    form_class = UserCreationForm  # Предположим, что вы используете стандартную форму создания пользователя
+    form_class = UserCreationForm  
     redirect_authenticated_user = True
     success_url = reverse_lazy('main')
 
@@ -47,5 +50,21 @@ class CustomLoginView(LoginView):
     success_url = reverse_lazy('main')
     
 class CustomLogoutView(LogoutView):
-    next_page = 'login'  # Сюда можно поместить адрес, на который нужно перенаправить после выхода пользователя
+    next_page = 'login' 
 
+
+class EditProfileView(LoginRequiredMixin, UpdateView):
+    template_name = 'vpn_app/edit_profile.html'
+    form_class = UserChangeForm 
+    success_url = reverse_lazy('main')
+
+    def form_valid(self, form):
+        user_profile = form.save(commit=False)
+        user_profile.user = self.request.user
+        user_profile.save()
+        return super().form_valid(form)
+    
+    def get_object(self):
+        return self.request.user.userprofile  
+
+ 
