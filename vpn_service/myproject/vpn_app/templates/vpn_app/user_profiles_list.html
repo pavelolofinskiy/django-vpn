@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Sites List</title>
+</head>
+<body>
+    <h1>User Profiles List</h1>
+    <form method="get">
+        {% for profile in profile_data %}
+            <li>
+                <h2>{{ profile.user.username }}</h2>
+                <p>Site Name: {{ site.site_name }}</p>
+                <p>Site Url: {{ site.site_url }}</p>
+                <!-- Add other profile details as needed -->
+            </li>
+        {% empty %}
+            <li>No user profiles available.</li>
+        {% endfor %}
+    </form>
+    </ul>
+</body>
+</html>

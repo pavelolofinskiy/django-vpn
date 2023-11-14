@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,18 +7,30 @@
 <body>
     {% if user.is_authenticated %}
         <h1>Welcome, {{ user.username }}!</h1>
-        <p>First Name: {{ user_first_name }}</p>
-        <p>Last Name: {{ user_last_name }}</p>
-        <!-- Other content -->
+        <p>First Name: {{ user.first_name }}</p>
+        <p>Last Name: {{ user.last_name }}</p>
 
         <!-- Logout button -->
-        <form action="{{ logout_url }}" method="post">
+        <form action="{% url 'logout' %}" method="post">
             {% csrf_token %}
             <button type="submit">Logout</button>
         </form>
 
         <!-- Link to edit profile -->
         <a href="{% url 'edit' %}">Edit Profile</a>
+
+        <!-- Link to create site -->
+        <a href="{% url 'site_create' %}">Create Site</a>
+
+        <!-- Display sites -->
+
+
+        <!-- Button to go to user profiles list -->
+        <a href="{% url 'user_sites' %}" style="display: block; margin-top: 20px;">
+            <button>View User Sites List</button>
+        <a href="{% url 'profile_data' %}" style="display: block; margin-top: 20px;">
+                <button>View User Profile Data</button>
+        </a>
     {% endif %}
 </body>
 </html>

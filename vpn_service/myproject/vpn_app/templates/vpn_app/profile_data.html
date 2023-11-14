@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profiles List</title>
+</head>
+<body>
+    <h1>User Profiles List</h1>
+    <ul>
+        {% for profile in profile_data %}
+            <li>
+                <h2>{{ profile.user.username }}</h2>
+                <p>First Name: {{ profile.first_name }}</p>
+                <p>Last Name: {{ profile.last_name }}</p>
+                <!-- Add other profile details as needed -->
+            </li>
+        {% empty %}
+            <li>No user profiles available.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
