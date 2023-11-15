@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Site Details</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('a').not('[href^="/"]').attr('target', '_blank');
+        });
+    </script>
+</head>
+<body>
+    <div id="site-details-container">
+        {{ data | safe }}
+    </div>
+</body>
+</html>

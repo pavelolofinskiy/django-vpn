@@ -12,6 +12,7 @@
                 <strong>Site Name:</strong> {{ user_site.site_name }}<br>
                 <strong>URL:</strong> {{ user_site.site_url }}<br>
                 <!-- Add other fields of UserSite model as needed -->
+                <a href="{% url 'site_details' user_site.id %}">Перейти на сайт</a><br>
             </li>
             <hr>
         {% empty %}
