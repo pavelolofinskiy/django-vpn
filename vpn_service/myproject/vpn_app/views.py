@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.views.generic.edit import FormView, UpdateView
+from django.views.generic.edit import FormView, UpdateView, CreateView
 from django.urls import reverse_lazy
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -8,7 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.list import ListView
 from .forms import UserChangeForm
 
-from .models import UserProfile
+from .models import UserProfile, UserSite
 
 
 
@@ -67,4 +67,22 @@ class EditProfileView(LoginRequiredMixin, UpdateView):
     def get_object(self):
         return self.request.user.userprofile  
 
+
+class SiteCreateView(LoginRequiredMixin, CreateView):
+    model = UserSite 
+    fields = '__all__'
+    success_url = reverse_lazy('main')  
+    template_name = 'vpn_app/site_create.html'
+
+    def form_valid(self, form):
+        form.instance.user_profile = self.request.user.userprofile  # Assuming 'userprofile' is the related name
+        return super().form_valid(form)
+
+class SitesList(ListView):
+    model = UserSite
+    context_object_name = 'user_sites'  # Renaming 'sites' to 'user_profiles' for clarity
+    template_name = 'vpn_app/user_profiles_list.html'  # You should specify the appropriate template
+
+    def get_queryset(self):
+        return UserSite.objects.all()
  
