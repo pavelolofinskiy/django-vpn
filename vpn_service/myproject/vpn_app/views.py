@@ -82,6 +82,7 @@ class SitesList(ListView):
     model = UserSite
     context_object_name = 'user_sites'  # Renaming 'sites' to 'user_profiles' for clarity
     template_name = 'vpn_app/user_profiles_list.html'  # You should specify the appropriate template
+    fields = ['site_name', 'site_url']
 
     def get_queryset(self):
         return UserSite.objects.all()

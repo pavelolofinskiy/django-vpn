@@ -1,0 +1,22 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Sites List</title>
+</head>
+<body>
+    <h1>User Sites List</h1>
+    <ul>
+        {% for user_site in user_sites %}
+            <li>
+                <!-- Display the attributes of each UserSite -->
+                <strong>Site Name:</strong> {{ user_site.site_name }}<br>
+                <strong>URL:</strong> {{ user_site.site_url }}<br>
+                <!-- Add other fields of UserSite model as needed -->
+            </li>
+            <hr>
+        {% empty %}
+            <p>No user sites found.</p>
+        {% endfor %}
+    </ul>
+</body>
+</html>
