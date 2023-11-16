@@ -31,8 +31,17 @@ class UserSite(models.Model):
 class UserSiteTraffic(models.Model):
     user_site = models.ForeignKey(UserSite, on_delete=models.CASCADE)
     clicks = models.PositiveIntegerField(default=0)
-    data_sent = models.FloatField(default=0)  
+    data_sent = models.FloatField(default=0)
     data_received = models.FloatField(default=0)
 
+    
     def __str__(self):
         return f"Traffic for {self.user_site.site_name}"
+    
+    def increment_clicks(self):
+        self.clicks += 1
+        self.save()
+
+
+
+    

@@ -1,0 +1,25 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Cabinet</title>
+</head>
+<body>
+    {% if user.is_authenticated %}
+        <h1>Welcome, {{ user.username }}!</h1>
+        <p>First Name: {{ user_first_name }}</p>
+        <p>Last Name: {{ user_last_name }}</p>
+        <p>Total Click Counts: {{ total_clicks }}</p>
+    
+        <!-- Other content -->
+        <a href="{% url 'main' %}">
+            <button>Back to Main Page</button>
+        </a>
+        <!-- Navigation links similar to the Main Page -->
+        <a href="{% url 'edit' %}">Edit Profile</a>
+        
+
+        
+        <!-- Logout button -->
+    {% endif %}
+</body>
+</html>

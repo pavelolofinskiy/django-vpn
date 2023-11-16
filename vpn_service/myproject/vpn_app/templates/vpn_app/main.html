@@ -6,18 +6,18 @@
 <body>
     {% if user.is_authenticated %}
         <h1>Welcome, {{ user.username }}!</h1>
-        <p>First Name: {{ user_first_name }}</p>
-        <p>Last Name: {{ user_last_name }}</p>
         <!-- Other content -->
-
+        <a href="{% url 'cabinet' %}">Cabinet</a>
         <!-- Logout button -->
         <form action="{{ logout_url }}" method="post">
             {% csrf_token %}
             <button type="submit">Logout</button>
         </form>
 
+    
+
         <!-- Link to edit profile -->
-        <a href="{% url 'edit' %}">Edit Profile</a>
+
 
         <a href="{% url 'site_create' %}">Create Site</a>
 
