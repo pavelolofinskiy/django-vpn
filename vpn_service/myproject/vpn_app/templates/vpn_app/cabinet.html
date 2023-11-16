@@ -9,6 +9,7 @@
         <p>First Name: {{ user_first_name }}</p>
         <p>Last Name: {{ user_last_name }}</p>
         <p>Total Click Counts: {{ total_clicks }}</p>
+        <p>Total Data Count: {{ total_data_received|floatformat:"4" }} MB</p>
     
         <!-- Other content -->
         <a href="{% url 'main' %}">

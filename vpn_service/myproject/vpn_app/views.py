@@ -105,6 +105,14 @@ class SiteDetailsView(View):
 
         try:
             r = requests.get(site.site_url, proxies=proxies, verify=False)
+            print(r.content)
+
+            data_received_bytes = len(r.content)
+            data_received_megabytes = data_received_bytes / (1024 * 1024)
+
+            user_site_traffic_instance.data_received += data_received_megabytes 
+            user_site_traffic_instance.save()
+
             data = r.text  
         except requests.RequestException as e:
             data = f"Error: {e}"  
@@ -126,6 +134,9 @@ class UserCabinetView(View):
 
             total_clicks = UserSiteTraffic.objects.filter(user_site__user_profile=user_profile).aggregate(Sum('clicks'))['clicks__sum']
             context['total_clicks'] = total_clicks if total_clicks is not None else 0  
+
+            total_data_received = UserSiteTraffic.objects.filter(user_site__user_profile=user_profile).aggregate(Sum('data_received'))['data_received__sum']
+            context['total_data_received'] = total_data_received if total_data_received is not None else 0
 
             
 

@@ -8,20 +8,16 @@
         <h1>Welcome, {{ user.username }}!</h1>
         <!-- Other content -->
         <a href="{% url 'cabinet' %}">Cabinet</a>
-        <!-- Logout button -->
+
+        <a href="{% url 'site_create' %}">Create Site</a>
+
+        <a href="{% url 'user_sites' %}">View Sites</a>
+
         <form action="{{ logout_url }}" method="post">
             {% csrf_token %}
             <button type="submit">Logout</button>
         </form>
 
-    
-
-        <!-- Link to edit profile -->
-
-
-        <a href="{% url 'site_create' %}">Create Site</a>
-
-        <a href="{% url 'user_sites' %}">View Sites</a>
     {% endif %}
 </body>
 </html>
