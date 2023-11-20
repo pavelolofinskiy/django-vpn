@@ -30,7 +30,7 @@ This repository contains a Django project for a VPN service.
    docker-compose down
 
 ## Notes 
-    The Django application will be available at http://localhost:8000/
-    Ensure port 8000 is available and not used by any other service on your machine.
-    For production deployment, additional configuration and security measures are recommended.
+    ∙ The Django application will be available at http://localhost:8000/
+    ∙ Ensure port 8000 is available and not used by any other service on your machine.
+    ∙ For production deployment, additional configuration and security measures are recommended.
     
