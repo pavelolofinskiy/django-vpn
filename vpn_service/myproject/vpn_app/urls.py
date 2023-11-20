@@ -11,4 +11,5 @@ urlpatterns = [
     path('user_sites', SitesList.as_view(), name='user_sites'),
     path('sites/<int:site_id>/', SiteDetailsView.as_view(), name='site_details'),
     path('cabinet/', UserCabinetView.as_view(), name='cabinet'),
+    path('', CustomLogoutView.as_view(next_page='login'), name='logout'),
 ] 
