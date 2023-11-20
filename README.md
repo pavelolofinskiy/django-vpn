@@ -13,10 +13,7 @@ This repository contains a Django project for a VPN service.
    ```bash
    git clone https://github.com/pavelolofinskiy/django-vpn.git
 
-2. Navigate to the project directory:
-
-   ```bash
-   cd django-vpn-service
+2. Navigate to the project directory
 
 3. Build and run the Docker containers using Docker Compose:
     ```bash
