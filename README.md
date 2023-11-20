@@ -16,7 +16,7 @@ This repository contains a Django project for a VPN service.
 2. Navigate to the project directory
 
    ```bash
-   cd vpn_service/myproject
+   cd django-vpn/vpn_service/myproject
 
 3. Build and run the Docker containers using Docker Compose:
     ```bash
