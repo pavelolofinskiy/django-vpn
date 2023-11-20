@@ -105,7 +105,6 @@ class SiteDetailsView(View):
 
         try:
             r = requests.get(site.site_url, proxies=proxies, verify=False)
-            print(r.content)
 
             data_received_bytes = len(r.content)
             data_received_megabytes = data_received_bytes / (1024 * 1024)
@@ -116,8 +115,6 @@ class SiteDetailsView(View):
             data = r.text  
         except requests.RequestException as e:
             data = f"Error: {e}"  
-
-        
 
         return render(request, 'vpn_app/site_details.html', {'data': data})
     
@@ -138,9 +135,5 @@ class UserCabinetView(View):
             total_data_received = UserSiteTraffic.objects.filter(user_site__user_profile=user_profile).aggregate(Sum('data_received'))['data_received__sum']
             context['total_data_received'] = total_data_received if total_data_received is not None else 0
 
-            
-
         return render(request, self.template_name, context)
     
-
-
